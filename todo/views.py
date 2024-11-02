@@ -1,4 +1,6 @@
 from django.views import generic
+
+from todo.forms import AddTaskForm
 from todo.models import Task
 
 
@@ -8,4 +10,10 @@ class ToDoListView(generic.ListView):
 
     def get_queryset(self):
         return Task.objects.all()
+
+class CreateTaskView(generic.CreateView):
+    model = Task
+    form_class = AddTaskForm
+    template_name = "todo/create.html"
+
 
